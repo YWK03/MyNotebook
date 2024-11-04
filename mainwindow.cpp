@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->statusbar->addPermanentWidget(&statusCursorLabel);
 
     QLabel *author = new QLabel(ui->statusbar);
-    author->setText(tr("杨文"));
+    author->setText(tr("杨文铿"));
     ui->statusbar->addPermanentWidget(author);
 }
 
