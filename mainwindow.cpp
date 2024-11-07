@@ -6,7 +6,7 @@
 #include<QFileDialog>
 #include<qmessagebox.h>
 #include<QTextStream>
-#include<Qcolordialog>
+#include<QColordialog>
 #include<QFontDialog>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -48,6 +48,9 @@ MainWindow::MainWindow(QWidget *parent)
         ui->TextEdit->setLineWrapMode(QPlainTextEdit::NoWrap);
         ui->actionWrap->setChecked(true);
     }
+
+    ui->actionToolbar->setChecked(true);
+    ui->actionStatusBar->setChecked(true);
 }
 
 MainWindow::~MainWindow()
@@ -66,7 +69,7 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::on_actionLooking_triggered()
 {
-    SearchDialog dlg;
+    SearchDialog dlg(this, ui->TextEdit);
     dlg.exec();
 }
 
@@ -309,3 +312,32 @@ void MainWindow::on_actionFont_triggered()
     }
 }
 
+
+void MainWindow::on_actionToolbar_triggered()
+{
+    bool visible = ui->toolBar->isVisible();
+    ui->toolBar->setVisible(!visible);
+    ui->actionToolbar->setChecked(!visible);
+}
+
+
+void MainWindow::on_actionStatusBar_triggered()
+{
+    bool visible = ui->statusbar->isVisible();
+    ui->statusbar->setVisible(!visible);
+    ui->actionStatusBar->setChecked(!visible);
+}
+
+
+void MainWindow::on_action_A_triggered()
+{
+    ui->TextEdit->selectAll();
+}
+
+
+void MainWindow::on_actionOut_triggered()
+{
+    if (useEditConfirmed()) {
+        exit(0);
+    }
+}
