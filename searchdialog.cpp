@@ -21,6 +21,9 @@ void SearchDialog::on_pushButton_clicked()
 {
     QString target = ui->lineEdit->text();
 
+    if (target == "" || pTextEdit == nullptr)
+        return;
+
     QString text = pTextEdit->toPlainText();
     QTextCursor c = pTextEdit->textCursor();
     int index = -1;

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>357</width>
-    <height>135</height>
+    <height>136</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,7 +28,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit"/>
+          <widget class="QLineEdit" name="searchText"/>
          </item>
         </layout>
        </item>
@@ -42,7 +42,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_2"/>
+          <widget class="QLineEdit" name="replaceText"/>
          </item>
         </layout>
        </item>
@@ -87,16 +87,9 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="pushButton">
        <property name="text">
-        <string>取消</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_3">
-       <property name="text">
-        <string>全部替换(A)</string>
+        <string>查找下一个(F)</string>
        </property>
       </widget>
      </item>
@@ -108,9 +101,16 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pushButton_3">
        <property name="text">
-        <string>查找下一个(F)</string>
+        <string>全部替换(A)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="text">
+        <string>取消</string>
        </property>
       </widget>
      </item>

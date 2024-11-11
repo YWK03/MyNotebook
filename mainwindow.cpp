@@ -19,12 +19,12 @@ MainWindow::MainWindow(QWidget *parent)
     on_actionNew_triggered();
 
 
-    statusLabel.setMaximumWidth(150);
+    statusLabel.setMaximumWidth(200);
     statusLabel.setText("length:" + QString::number(0) + "   lines:" + QString::number(1));
     ui->statusbar->addPermanentWidget(&statusLabel);
 
 
-    statusCursorLabel.setMaximumWidth(150);
+    statusCursorLabel.setMaximumWidth(200);
     statusCursorLabel.setText("Ln:" + QString::number(0) + "   Col:" + QString::number(1));
     ui->statusbar->addPermanentWidget(&statusCursorLabel);
 
@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->actionCopy->setEnabled(false);
     ui->actionRestoration->setEnabled(false);
-    ui->actionReplacement->setEnabled(false);
+    ui->actionReplacement->setEnabled(true);
     ui->actionCut->setEnabled(false);
     ui->actionSticking->setEnabled(false);
 
@@ -76,7 +76,7 @@ void MainWindow::on_actionLooking_triggered()
 
 void MainWindow::on_actionReplacement_triggered()
 {
-    ReplacepDialog dlg;
+    ReplacepDialog dlg(this, ui->TextEdit);
     dlg.exec();
 }
 
@@ -181,6 +181,10 @@ void MainWindow::on_TextEdit_textChanged()
         this->setWindowIconText("*" + this->windowTitle());
         textChanged = true;
     }
+
+    statusLabel.setText("length:" + QString::number(ui->TextEdit->toPlainText().length())
+                        + "   lines:" + QString::number(ui->TextEdit->document()->lineCount()));
+
 }
 
 bool MainWindow::useEditConfirmed()
@@ -341,3 +345,24 @@ void MainWindow::on_actionOut_triggered()
         exit(0);
     }
 }
+
+void MainWindow::on_TextEdit_cursorPositionChanged()
+{
+    int col = 0;
+    int ln = 0;
+    int flg = -1;
+    int pos = ui->TextEdit->textCursor().position();
+    QString text = ui->TextEdit->toPlainText();
+
+    for (int i = 0; i < pos; i++) {
+        if (text[i] == '\n') {
+            ln++;
+            flg = i;
+        }
+    }
+    flg++;
+    col = pos - flg;
+    statusCursorLabel.setText("Ln:" + QString::number(ln + 1) + "   Col:" +
+                              QString::number(col + 1));
+}
+
